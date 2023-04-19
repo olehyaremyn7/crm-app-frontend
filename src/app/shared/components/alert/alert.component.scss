@@ -1,0 +1,33 @@
+.alert-title {
+  text-align: center;
+  font-weight: 500;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.alert-icon {
+  min-width: 48px;
+  min-height: 48px;
+  font-size: 3rem;
+  color: #3f51b5;
+}
+
+.alert-message {
+  margin: 20px auto;
+  font-weight: 500;
+  overflow: hidden;
+  word-break: break-word;
+  width: 300px;
+}
+
+.alert-actions {
+  & button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,43 @@
+.order-categories {
+  margin: 20px 0;
+
+  &__card {
+    width: calc(100% - 91.75px);
+    height: calc(100% - 48px);
+  }
+
+  &__card-header {
+    margin: 0 -8px;
+  }
+
+  &__card-title {
+    font-size: 1.125rem;
+  }
+
+  &__positions {
+    position: absolute;
+    display: inline-flex;
+    color: #f7f7fe;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    right: -0.5rem;
+    top: -0.5rem;
+    background-color: #3f51b5;
+    user-select: none;
+  }
+
+  &__card-image {
+    height: calc(100% - 113.25px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__card-actions {
+    padding: 5px;
+  }
+}

@@ -1,0 +1,74 @@
+<section class="history-table" *ngIf="!!tableDataSource.data.length; else noOrders">
+  <div class="history-table__wrapper mat-elevation-z8">
+    <table mat-table [dataSource]="tableDataSource" class="history-table__table">
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let order">#{{ order.order }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.date | date: 'MM/dd/yyyy' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.date | date: 'h:mm a' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef>Cost</th>
+        <td mat-cell *matCellDef="let order">{{ orderPrice(order) | currency }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let order">
+          <button
+            class="history-table__operation-button"
+            mat-flat-button
+            color="primary"
+            matTooltip="View details"
+            (click)="viewDetails(order)"
+            [disabled]="orderService.isLoadMoreLoading"
+          >
+            <mat-icon class="operation-icon">open_in_new</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [class.hide]="!tableDataSource.data.length"
+      [pageSizeOptions]="[5, 10, 15, 20, 25, 30, 35, 40, 45, 50]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <div class="history-table__load" [class.hide]="orderService.isMoreOrders">
+    <button
+      mat-fab
+      isIconButton
+      class="history-table__load-action"
+      color="primary"
+      type="button"
+      matTooltip="Load more orders"
+      (click)="loadMore()"
+      [class.loop]="orderService.isLoadMoreLoading"
+      [disabled]="orderService.isLoadMoreLoading"
+    >
+      <mat-icon class="upload-icon">sync</mat-icon>
+    </button>
+  </div>
+</section>
+
+<ng-template #noOrders>
+  <app-no-data text="There are no orders"></app-no-data>
+</ng-template>

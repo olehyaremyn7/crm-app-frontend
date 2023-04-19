@@ -1,0 +1,84 @@
+.category-form {
+  &__title {
+    font-size: 1.563rem;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  &__title-icon {
+    vertical-align: top;
+    font-size: 1.563rem;
+    width: 2.5rem;
+  }
+
+  &__content {
+    margin-top: 20px;
+  }
+
+  &__form {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px 0;
+  }
+
+  &__form-control {
+    flex: 1;
+    font-size: 1rem;
+
+    & .label-icon {
+      vertical-align: bottom;
+      font-size: 1.1rem;
+      width: 1.5rem;
+    }
+  }
+
+  &__validation {
+    margin-top: 3px;
+    font-size: 0.875rem;
+  }
+
+  &__file-upload {
+    flex: 0;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 30px 0;
+  }
+
+  &__image-preview {
+    flex: 0;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  }
+
+  &__file-name {
+    flex: 1;
+    font-size: 1rem;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  &__file-upload-actions {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__actions {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__action-btn {
+    width: calc(50% - 10px);
+    padding: 3px 15px;
+
+    &:first-of-type {
+      margin-right: 15px;
+      background: #e1e1e1;
+    }
+  }
+}

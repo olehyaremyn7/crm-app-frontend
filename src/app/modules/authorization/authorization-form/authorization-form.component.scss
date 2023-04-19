@@ -1,0 +1,97 @@
+.auth-form {
+  max-width: 1100px;
+  height: 100%;
+  margin: auto;
+  padding: 0 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__card {
+    margin-top: -60px;
+    width: 400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+  }
+
+  &__card-header {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__card-title {
+    font-size: 1.563rem;
+    font-weight: 500;
+  }
+
+  &__card-content {
+    flex: 1 0 auto;
+  }
+
+  &__form {
+    padding: 0 40px;
+  }
+
+  &__form-control {
+    padding: 15px 0;
+    width: 100%;
+    font-size: 1rem;
+
+    & mat-icon {
+      vertical-align: bottom;
+      font-size: 1.1rem;
+      width: 1.5rem;
+    }
+
+    & button {
+      color: #757575;
+
+      &.active {
+        color: #3f51b5;
+
+        &:hover {
+          color: #f44336;
+        }
+      }
+
+      &.disabled {
+        color: #757575;
+
+        &:hover {
+          color: #757575;
+        }
+      }
+
+      & mat-icon {
+        vertical-align: middle;
+        font-size: 1.3rem;
+      }
+
+      &:hover {
+        color: #3f51b5;
+      }
+    }
+  }
+
+  &__validation {
+    margin-top: 3px;
+    font-size: 0.875rem;
+  }
+
+  &__btn {
+    margin-top: 50px;
+    font-size: 1rem;
+    width: 100%;
+    padding: 8px 25px 8px 25px;
+
+    &.spinner {
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+  }
+}

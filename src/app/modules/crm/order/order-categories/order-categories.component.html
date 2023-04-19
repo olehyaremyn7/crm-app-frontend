@@ -1,0 +1,41 @@
+<div class="order-categories" *ngIf="categoriesService.categories$ | async as categories">
+  <mat-grid-list
+    [cols]="breakpoint"
+    [rowHeight]="rowHeight"
+    gutterSize="50px"
+    class="order-categories__cards"
+    *ngIf="categories.length !== 0; else noCategories"
+  >
+    <mat-grid-tile *ngFor="let category of categories">
+      <mat-card class="order-categories__card">
+        <mat-card-header class="order-categories__card-header">
+          <mat-card-title class="order-categories__card-title">{{ category.name }}</mat-card-title>
+          <mat-card-subtitle class="order-categories__card-subtitle"> Category </mat-card-subtitle>
+        </mat-card-header>
+        <span class="order-categories__positions" matTooltip="Positions count">{{ category.positions }}</span>
+        <img
+          mat-card-image
+          class="order-categories__card-image"
+          [src]="createCategoryImagePath(category.imagePath)"
+          alt="category-image"
+        />
+        <mat-card-actions class="order-categories__card-actions">
+          <button
+            mat-flat-button
+            color="primary"
+            class="order-categories__card-btn"
+            matTooltip="Open positions"
+            [disabled]="category.positions === 0"
+            [routerLink]="['/order/positions', category._id]"
+          >
+            OPEN
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<ng-template #noCategories>
+  <app-no-data text="There are no categories to order"></app-no-data>
+</ng-template>

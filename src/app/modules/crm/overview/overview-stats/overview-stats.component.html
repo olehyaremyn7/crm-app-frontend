@@ -1,0 +1,44 @@
+<section class="overview-stats" *ngIf="!!analyticsService.overview.length; else noOverview">
+  <div class="overview-stats__stats">
+    <mat-card class="overview-stats__card" *ngFor="let overviewData of analyticsService.overview">
+      <mat-card-content class="overview-stats__card-content">
+        <div class="overview-stats__card-entity">
+          <h2 class="entity">
+            <mat-icon class="entity-icon">{{
+              overviewData.entity === 'Income' ? 'savings' : 'shopping_cart'
+            }}</mat-icon>
+            {{ overviewData.entity }}
+          </h2>
+        </div>
+        <div class="overview-stats__card-measurement">
+          <h2 class="measurement" *ngIf="overviewData.measurement === 'dollar'">
+            {{ overviewData.yesterday | currency }}
+          </h2>
+          <h2 class="measurement" *ngIf="overviewData.measurement === 'orders'">
+            <mat-icon class="orders-icon">shopping_basket</mat-icon>
+            {{ overviewData.yesterday }}
+          </h2>
+        </div>
+        <div class="overview-stats__card-percent">
+          <span
+            class="percent"
+            [ngClass]="{
+              success: overviewData.isHigher,
+              danger: !overviewData.isHigher
+            }"
+          >
+            <mat-icon class="percent-icon">{{ overviewData.isHigher ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+            {{ overviewData.percent / 100 | percent }}
+          </span>
+        </div>
+        <div class="overview-stats__card-conclusion">
+          <p class="conclusion">{{ overviewData.conclusion }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<ng-template #noOverview>
+  <app-no-data text="There are no orders to generate overview information"></app-no-data>
+</ng-template>

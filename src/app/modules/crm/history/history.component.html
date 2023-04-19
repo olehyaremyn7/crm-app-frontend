@@ -1,0 +1,35 @@
+<section class="history">
+  <div class="history__container">
+    <header class="history__header">
+      <h1 class="history__title">
+        <mat-icon class="title-icon">history</mat-icon>
+        History
+      </h1>
+      <button
+        mat-raised-button
+        class="history__action-btn"
+        [color]="orderService.isFiltered ? 'warn' : 'primary'"
+        (click)="toggleFilter()"
+        [matTooltip]="isShowFilter ? 'Hide filter' : 'Open filter'"
+        [disabled]="orderService.isFetchLoading || orderService.isLoadMoreLoading"
+      >
+        <mat-icon>{{ isShowFilter ? 'filter_alt_off' : 'filter_alt' }}</mat-icon>
+        Filter
+      </button>
+    </header>
+    <section class="history__content">
+      <div class="collapse" [class.show]="isShowFilter">
+        <app-history-filter (onFilter)="getOrders()"></app-history-filter>
+      </div>
+
+      <app-history-table
+        *ngIf="!orderService.isFetchLoading; else loader"
+        (onLoadMore)="getOrders()"
+      ></app-history-table>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

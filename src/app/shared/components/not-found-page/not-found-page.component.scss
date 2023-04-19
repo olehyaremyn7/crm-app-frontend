@@ -1,0 +1,160 @@
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 30px 0;
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: 10rem;
+    font-weight: 800;
+    margin-bottom: 70px;
+  }
+
+  &__message {
+    display: inline-block;
+    font-size: 3.125rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 20px 0;
+
+    & button {
+      font-size: 1.563rem;
+      padding: 20px 0;
+    }
+  }
+
+  &__tip {
+    display: inline-block;
+    font-size: 1.563rem;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .not-found {
+    &__content {
+      gap: 20px 0;
+    }
+
+    &__title {
+      font-size: 8rem;
+      margin-bottom: 60px;
+    }
+
+    &__message {
+      font-size: 2.5rem;
+    }
+
+    &__actions {
+      gap: 10px 0;
+
+      & button {
+        font-size: 1.376rem;
+        padding: 15px 0;
+      }
+    }
+
+    &__tip {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .not-found {
+    &__content {
+      gap: 15px 0;
+    }
+
+    &__title {
+      font-size: 6rem;
+      margin-bottom: 50px;
+    }
+
+    &__message {
+      font-size: 2rem;
+    }
+
+    &__actions {
+      gap: 5px 0;
+
+      & button {
+        font-size: 1.25rem;
+        padding: 10px 0;
+      }
+    }
+
+    &__tip {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .not-found {
+    &__content {
+      gap: 10px 0;
+    }
+
+    &__title {
+      font-size: 5rem;
+      margin-bottom: 40px;
+    }
+
+    &__message {
+      font-size: 1.5rem;
+    }
+
+    &__actions {
+      gap: 0;
+
+      & button {
+        font-size: 1rem;
+        padding: 5px 0;
+      }
+    }
+
+    &__tip {
+      margin-top: 3px;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .not-found {
+    &__content {
+      gap: 5px 0;
+    }
+
+    &__title {
+      font-size: 4rem;
+      margin-bottom: 30px;
+    }
+
+    &__message {
+      font-size: 1.25rem;
+    }
+
+    &__tip {
+      font-size: 0.875rem;
+    }
+  }
+}

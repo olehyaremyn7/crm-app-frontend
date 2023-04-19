@@ -1,0 +1,27 @@
+<section class="overview">
+  <div class="overview__container">
+    <header class="overview__header">
+      <h1 class="overview__title">
+        <mat-icon class="title-icon">query_stats</mat-icon>
+        Overview {{ analyticsService.overviewDate | date: 'MM/dd/yyyy' }}
+      </h1>
+      <button
+        mat-raised-button
+        class="overview__action-btn"
+        color="primary"
+        [disabled]="analyticsService.isLoading"
+        (click)="openAboutDialog()"
+      >
+        <mat-icon>info</mat-icon>
+        About
+      </button>
+    </header>
+    <section class="overview__content">
+      <app-overview-stats *ngIf="!analyticsService.isLoading; else loader"></app-overview-stats>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

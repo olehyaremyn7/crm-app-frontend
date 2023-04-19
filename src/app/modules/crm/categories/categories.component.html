@@ -1,0 +1,27 @@
+<section class="categories">
+  <div class="categories__container">
+    <header class="categories__header">
+      <h1 class="categories__title">
+        <mat-icon class="title-icon">category</mat-icon>
+        Categories
+      </h1>
+      <button
+        mat-raised-button
+        class="categories__action-btn"
+        color="primary"
+        (click)="openForm()"
+        [disabled]="categoriesService.isFetchLoading"
+      >
+        <mat-icon>add_circle</mat-icon>
+        New category
+      </button>
+    </header>
+    <section class="categories__content">
+      <app-categories-table *ngIf="!categoriesService.isFetchLoading; else loader"></app-categories-table>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

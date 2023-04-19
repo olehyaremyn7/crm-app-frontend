@@ -1,0 +1,68 @@
+<section class="position-form">
+  <h3 mat-dialog-title class="position-form__title">
+    <mat-icon class="position-form__title-icon">
+      {{ isEdit ? 'edit' : 'add_shopping_cart' }}
+    </mat-icon>
+    {{ isEdit ? 'Edit position' : 'New position' }}
+  </h3>
+  <mat-dialog-content class="position-form__content">
+    <form class="position-form__form" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <mat-form-field
+        class="position-form__form-control"
+        [class.invalid]="form.get('name')?.touched && form.get('name')?.invalid"
+      >
+        <mat-label for="name">
+          <mat-icon class="label-icon">liquor</mat-icon>
+          Name
+        </mat-label>
+        <input matInput formControlName="name" type="text" id="name" placeholder="Enter position name" />
+
+        <mat-error *ngIf="form.get('name')?.hasError('required')" class="position-form__validation">
+          Please enter name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="position-form__form-control"
+        [class.invalid]="form.get('cost')?.touched && form.get('cost')?.invalid"
+      >
+        <mat-label for="cost">
+          <mat-icon class="label-icon">attach_money</mat-icon>
+          Cost
+        </mat-label>
+        <input matInput formControlName="cost" type="number" min="1" id="cost" placeholder="Enter position cost" />
+
+        <mat-error *ngIf="form.get('cost')?.hasError('required')" class="position-form__validation">
+          Please enter cost
+        </mat-error>
+
+        <mat-error *ngIf="form.get('cost')?.hasError('min')" class="position-form__validation">
+          Enter a value of at least $1
+        </mat-error>
+      </mat-form-field>
+
+      <div class="position-form__actions">
+        <button
+          mat-flat-button
+          type="reset"
+          (click)="closeModal()"
+          class="position-form__action-btn"
+          [disabled]="form.disabled"
+        >
+          Cancel
+        </button>
+
+        <button
+          mat-flat-button
+          color="accent"
+          type="submit"
+          class="position-form__action-btn"
+          [disabled]="form.invalid || form.disabled"
+        >
+          <app-button-loader *ngIf="positionsService.isCreateLoading; else buttonText"></app-button-loader>
+          <ng-template #buttonText> Save changes </ng-template>
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</section>

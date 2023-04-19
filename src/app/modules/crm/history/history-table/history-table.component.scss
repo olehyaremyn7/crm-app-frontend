@@ -1,0 +1,101 @@
+.history-table {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+
+  &__wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__table {
+    width: 100%;
+
+    & td {
+      width: 20%;
+    }
+  }
+
+  &__operation-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    min-width: 30px;
+    margin: 0 0.5rem 0 0;
+    padding: 0 0.4rem;
+
+    & .operation-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    &:last-child {
+      margin: 0 0 0 0;
+    }
+  }
+
+  &__load {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    animation: slideIn 0.4s forwards;
+
+    &.hide {
+      animation: slideOut 0.2s forwards;
+    }
+  }
+
+  &__load-action {
+    &.loop {
+      animation-name: spinner;
+      animation-duration: 1000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: -90px;
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    top: -90px;
+  }
+}

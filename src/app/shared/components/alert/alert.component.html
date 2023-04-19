@@ -1,0 +1,9 @@
+<h3 mat-dialog-title class="alert-title">{{ alertProps.title }}</h3>
+<mat-dialog-content class="alert-content">
+  <mat-icon class="alert-icon">{{ alertProps.icon }}</mat-icon>
+  <p class="alert-message">{{ alertProps.message ? alertProps.message : 'No message' }}</p>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions class="alert-actions" align="center">
+  <button mat-flat-button type="reset" mat-dialog-close>Close</button>
+</mat-dialog-actions>

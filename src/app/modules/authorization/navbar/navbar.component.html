@@ -1,0 +1,17 @@
+<nav mat-tab-nav-bar class="auth-navbar" [tabPanel]="tabPanel">
+  <a
+    mat-tab-link
+    class="auth-navbar__link"
+    *ngFor="let tab of authTabs"
+    [routerLink]="tab.path"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    [disabled]="authService.isLoading && !rla.isActive"
+    [tabIndex]="tab.index"
+  >
+    {{ tab.label }}
+  </a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

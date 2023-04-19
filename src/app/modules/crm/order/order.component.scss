@@ -1,0 +1,51 @@
+.order {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 1.563rem;
+    display: flex;
+    align-items: center;
+
+    & .title-icon {
+      font-size: 1.563rem;
+      width: 2.5rem;
+    }
+  }
+
+  &__title-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+      text-decoration: none;
+      color: #3f51b5;
+    }
+  }
+
+  & .breadcrumbs {
+    & .breadcrumbs-arrow {
+      text-align: center;
+      font-size: 1.563rem;
+      width: 1.4rem;
+      padding-right: 10px;
+    }
+  }
+
+  &__action-btn {
+    font-size: 0.938rem;
+    padding: 0 25px 0 20px;
+
+    & mat-icon {
+      width: 2rem;
+    }
+  }
+}

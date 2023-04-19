@@ -1,0 +1,12 @@
+<h3 mat-dialog-title class="confirm-title">Confirm the action</h3>
+<mat-dialog-content class="confirm-content">
+  <mat-icon class="confirm-icon">{{ confirmProps.icon }}</mat-icon>
+  <p class="confirm-message">
+    {{ confirmProps.message ? confirmProps.message : 'Do you want to do this action?' }}
+  </p>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions class="confirm-actions">
+  <button mat-flat-button type="reset" (click)="cancel()">Cancel</button>
+  <button mat-flat-button type="submit" (click)="confirm()">Confirm</button>
+</mat-dialog-actions>

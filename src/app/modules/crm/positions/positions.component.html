@@ -1,0 +1,27 @@
+<section class="positions">
+  <div class="positions__container">
+    <header class="positions__header">
+      <h1 class="positions__title">
+        <mat-icon class="title-icon">liquor</mat-icon>
+        Positions
+      </h1>
+      <button
+        mat-raised-button
+        class="positions__action-btn"
+        color="primary"
+        (click)="openForm()"
+        [disabled]="positionsService.isFetchLoading"
+      >
+        <mat-icon>add_circle</mat-icon>
+        New position
+      </button>
+    </header>
+    <section class="positions__content">
+      <app-positions-table *ngIf="!positionsService.isFetchLoading; else loader"></app-positions-table>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+<section class="order-positions" *ngIf="!!tableDataSource.data.length; else noPositions">
+  <mat-form-field class="order-positions__filter">
+    <mat-label>
+      <mat-icon class="search-icon">search</mat-icon>
+      Filter
+    </mat-label>
+    <input matInput type="search" (keyup)="applyFilter($event)" #tableFilter />
+    <button
+      *ngIf="tableFilter.value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      matTooltip="Clear"
+      (click)="tableFilter.value = ''; clearFilter($event)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="order-positions__table-wrapper mat-elevation-z8">
+    <table mat-table [dataSource]="tableDataSource" matSort class="order-positions__table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let position">
+          {{ position.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef>Cost</th>
+        <td mat-cell *matCellDef="let position">
+          {{ position.cost | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let position">
+          <mat-form-field class="order-positions__form-control">
+            <input matInput type="number" min="1" [(ngModel)]="position.quantity" />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let position">
+          <button
+            class="order-positions__operation-button"
+            mat-flat-button
+            color="primary"
+            (click)="addToCart(position)"
+            [disabled]="!position.quantity"
+            matTooltip="Add to cart"
+          >
+            <mat-icon class="operation-icon">add_shopping_cart</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{ tableFilter.value }}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [class.hide]="!tableDataSource.data.length"
+      [pageSizeOptions]="[5, 10, 20, 25, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</section>
+
+<ng-template #noPositions>
+  <app-no-data text="There are no positions in this category"></app-no-data>
+</ng-template>

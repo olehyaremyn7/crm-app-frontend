@@ -1,0 +1,27 @@
+<section class="analytics">
+  <div class="analytics__container">
+    <header class="analytics__header">
+      <h1 class="analytics__title">
+        <mat-icon class="title-icon">show_chart</mat-icon>
+        Analytics
+      </h1>
+      <button
+        mat-raised-button
+        class="analytics__action-btn"
+        color="primary"
+        [disabled]="analyticsService.isLoading"
+        (click)="openInfoDialog()"
+      >
+        <mat-icon>info</mat-icon>
+        Info
+      </button>
+    </header>
+    <section class="analytics__content">
+      <app-analytics-charts *ngIf="!analyticsService.isLoading; else loader"></app-analytics-charts>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

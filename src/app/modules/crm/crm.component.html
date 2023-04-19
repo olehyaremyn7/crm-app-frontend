@@ -1,0 +1,60 @@
+<mat-drawer-container class="crm">
+  <mat-drawer
+    #drawer
+    class="crm__drawer"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar class="crm__drawer-toolbar">Navigation</mat-toolbar>
+
+    <mat-nav-list class="crm__drawer-list">
+      <a
+        mat-list-item
+        class="crm__drawer-list-item"
+        *ngFor="let link of drawerLinks"
+        routerLinkActive="active"
+        [routerLink]="[link.path]"
+      >
+        <mat-icon>{{ link.icon }}</mat-icon>
+        {{ link.label }}
+      </a>
+      <a mat-list-item class="crm__drawer-list-item" (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content class="crm__content-wrapper">
+    <mat-toolbar class="crm__toolbar" color="primary">
+      <span class="crm__toolbar-logo">
+        <a class="logo-link" routerLink="/overview">PowerCRM</a>
+      </span>
+
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+
+      <button mat-mini-fab color="primary" (click)="openCloseDrawerToggle()">
+        <mat-icon>{{ drawerRef.opened ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="crm__content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <button class="crm__menu-btn" mat-fab isIconButton color="accent" [matMenuTriggerFor]="menu">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/order">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Order</span>
+      </button>
+      <button mat-menu-item routerLink="/categories" [queryParams]="{ create: true }">
+        <mat-icon>category</mat-icon>
+        <span>Category</span>
+      </button>
+    </mat-menu>
+  </mat-drawer-content>
+</mat-drawer-container>

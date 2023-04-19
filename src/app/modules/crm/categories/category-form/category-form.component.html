@@ -1,0 +1,97 @@
+<section class="category-form">
+  <h3 mat-dialog-title class="category-form__title">
+    <mat-icon class="category-form__title-icon">
+      {{ isEdit ? 'edit' : 'add_shopping_cart' }}
+    </mat-icon>
+    {{ isEdit ? 'Edit category' : 'New category' }}
+  </h3>
+  <mat-dialog-content class="category-form__content">
+    <form class="category-form__form" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <mat-form-field
+        class="category-form__form-control"
+        [class.invalid]="form.get('name')?.touched && form.get('name')?.invalid"
+      >
+        <mat-label for="name">
+          <mat-icon class="label-icon">category</mat-icon>
+          Name
+        </mat-label>
+        <input matInput formControlName="name" type="text" id="name" placeholder="Enter category name" />
+
+        <mat-error *ngIf="form.get('name')?.hasError('required')" class="category-form__validation">
+          Please enter name
+        </mat-error>
+      </mat-form-field>
+
+      <div class="category-form__file-upload">
+        <img
+          class="category-form__image-preview"
+          [src]="imagePreview ? imagePreview : defaultImage"
+          alt="category image preview"
+        />
+
+        <span *ngIf="categoryImage" class="category-form__file-name"
+          >{{ categoryImage.name }} ({{ bytesToSize() }})</span
+        >
+
+        <input
+          type="file"
+          hidden
+          #imageUploadInput
+          accept=".png .jpg .jpeg"
+          [disabled]="form.disabled"
+          (change)="fileUpload($event)"
+        />
+
+        <div class="category-form__file-upload-actions">
+          <button
+            (click)="fileInput()"
+            [disabled]="categoriesService.isCreateLoading"
+            mat-fab
+            isIconButton
+            color="primary"
+            type="button"
+            matTooltip="Upload an image"
+          >
+            <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          </button>
+
+          <button
+            *ngIf="imagePreview"
+            (click)="deleteUploadedImage()"
+            [disabled]="categoriesService.isCreateLoading"
+            mat-fab
+            isIconButton
+            color="warn"
+            type="button"
+            matTooltip="Clear image"
+          >
+            <mat-icon class="clear-icon">delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="category-form__actions">
+        <button
+          mat-flat-button
+          type="reset"
+          (click)="closeModal()"
+          class="category-form__action-btn"
+          [disabled]="form.disabled"
+        >
+          Cancel
+        </button>
+
+        <button
+          mat-flat-button
+          color="accent"
+          type="submit"
+          class="category-form__action-btn"
+          [disabled]="form.invalid || form.disabled"
+        >
+          <app-button-loader *ngIf="categoriesService.isCreateLoading; else buttonText"></app-button-loader>
+          <ng-template #buttonText> Save changes </ng-template>
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</section>

@@ -1,0 +1,33 @@
+.overview-about-title {
+  text-align: center;
+  font-weight: 500;
+}
+
+.overview-about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.overview-about-icon {
+  min-width: 48px;
+  min-height: 48px;
+  font-size: 3rem;
+  color: #3f51b5;
+}
+
+.overview-about-message {
+  margin: 20px auto;
+  font-weight: 500;
+  overflow: hidden;
+  word-break: break-word;
+  width: 450px;
+}
+
+.overview-about-actions {
+  & button {
+    width: 100%;
+  }
+}

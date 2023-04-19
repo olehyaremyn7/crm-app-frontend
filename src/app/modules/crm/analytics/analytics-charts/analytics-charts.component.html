@@ -1,0 +1,29 @@
+<section class="analytics-charts" *ngIf="isChartData(); else noAnalytics">
+  <div class="analytics-charts__container">
+    <div class="analytics-charts__average">
+      <h2 class="average-check">
+        <mat-icon class="check-icon">receipt</mat-icon>
+        Average check:
+        <span class="check-price">{{ analyticsService.average | currency }}</span>
+      </h2>
+    </div>
+    <div class="analytics-charts__chart">
+      <h2 class="chart-label">
+        <mat-icon class="label-icon">savings</mat-icon>
+        Income
+      </h2>
+      <canvas #incomeChart height="100"></canvas>
+    </div>
+    <div class="analytics-charts__chart">
+      <h2 class="chart-label">
+        <mat-icon class="label-icon">shopping_cart</mat-icon>
+        Orders
+      </h2>
+      <canvas #ordersChart height="100"></canvas>
+    </div>
+  </div>
+</section>
+
+<ng-template #noAnalytics>
+  <app-no-data text="There are no data to generate analytics"></app-no-data>
+</ng-template>

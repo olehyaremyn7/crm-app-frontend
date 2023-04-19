@@ -1,0 +1,8 @@
+<section class="no-data">
+  <mat-icon class="no-data__icon">report</mat-icon>
+  <p class="no-data__text">{{ text }}</p>
+  <button *ngIf="retryService.isRetry" class="no-data__button" mat-raised-button type="reset" (click)="retry()">
+    <mat-icon>restart_alt</mat-icon>
+    Retry
+  </button>
+</section>

@@ -1,0 +1,84 @@
+<mat-card class="filter">
+  <mat-card-content class="filter__content">
+    <form class="filter__form" autocomplete="off" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field
+        class="filter__form-control"
+        [class.invalid]="form.get('order')?.touched && form.get('order')?.invalid"
+      >
+        <mat-label for="order">
+          <mat-icon class="label-icon">tag</mat-icon>
+          Order
+        </mat-label>
+        <input matInput formControlName="order" type="number" id="order" min="1" placeholder="Enter order number" />
+
+        <mat-error *ngIf="form.get('order')?.hasError('min')" class="filter__validation">
+          Enter a order number of at least 1
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        class="filter__form-control"
+        [class.invalid]="
+          (form.get('range')?.get('start')?.touched && form.get('range')?.get('start')?.invalid) ||
+          (form.get('range')?.get('end')?.touched && form.get('range')?.get('end')?.invalid)
+        "
+      >
+        <mat-label>Enter a date range</mat-label>
+
+        <mat-date-range-input formGroupName="range" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date" />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error
+          *ngIf="form.get('range')?.get('start')?.errors || form.get('range')?.get('end')?.errors"
+          class="filter__validation"
+          >Invalid date range</mat-error
+        >
+      </mat-form-field>
+
+      <div class="filter__actions">
+        <button
+          [disabled]="isShowClearButton() || orderService.isFetchLoading || orderService.isLoadMoreLoading"
+          mat-flat-button
+          color="warn"
+          type="button"
+          class="filter__action-btn"
+          matTooltip="Reset filters"
+          (click)="reset()"
+        >
+          <mat-icon class="clear-icon">delete_forever</mat-icon>
+        </button>
+
+        <button
+          [disabled]="!orderService.isFiltered || orderService.isFetchLoading || orderService.isLoadMoreLoading"
+          mat-flat-button
+          color="accent"
+          type="button"
+          class="filter__action-btn"
+          matTooltip="Refresh orders"
+          (click)="refetch()"
+        >
+          <mat-icon class="clear-icon">refresh</mat-icon>
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          class="filter__action-btn"
+          type="submit"
+          matTooltip="Search"
+          [disabled]="
+            form.invalid || isShowClearButton() || orderService.isFetchLoading || orderService.isLoadMoreLoading
+          "
+        >
+          <mat-icon class="clear-icon">search</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

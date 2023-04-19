@@ -1,0 +1,37 @@
+<section class="order">
+  <div class="order__container">
+    <header class="order__header">
+      <h1 class="order__title" *ngIf="isRoot">
+        <mat-icon class="title-icon">shopping_cart</mat-icon>
+        Order
+      </h1>
+      <h1 class="order__title breadcrumbs" *ngIf="!isRoot">
+        <mat-icon class="title-icon">shopping_cart</mat-icon>
+        <a class="order__title-link" routerLink="/order">Order</a>
+        <mat-icon class="breadcrumbs-arrow">keyboard_arrow_right</mat-icon>
+        Select positions
+      </h1>
+      <button
+        mat-raised-button
+        class="order__action-btn"
+        color="primary"
+        (click)="openCart()"
+        [disabled]="
+          !cartService.isOrderPositions || categoriesService.isFetchLoading || positionsService.isFetchLoading
+        "
+      >
+        <mat-icon>shopping_cart_checkout</mat-icon>
+        Cart
+      </button>
+    </header>
+    <section class="order__content">
+      <router-outlet
+        *ngIf="!categoriesService.isFetchLoading && !positionsService.isFetchLoading; else loader"
+      ></router-outlet>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </section>
+  </div>
+</section>

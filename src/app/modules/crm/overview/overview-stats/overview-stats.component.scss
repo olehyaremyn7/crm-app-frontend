@@ -1,0 +1,132 @@
+.overview-stats {
+  margin: 20px 0;
+
+  &__stats {
+    display: flex;
+    gap: 0 70px;
+  }
+
+  &__card {
+    flex: 1;
+    padding: 30px 40px;
+  }
+
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px 0;
+  }
+
+  &__card-entity {
+    & .entity {
+      font-size: 1.563rem;
+      display: flex;
+      align-items: center;
+
+      & .entity-icon {
+        font-size: 1.563rem;
+        width: 2.5rem;
+      }
+    }
+  }
+
+  &__card-measurement {
+    & .measurement {
+      font-size: 2.5rem;
+      font-weight: 700;
+      user-select: none;
+
+      & .orders-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  &__card-percent {
+    & .percent {
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      user-select: none;
+
+      &.success {
+        color: #69f0ae;
+      }
+
+      &.danger {
+        color: #dc3545;
+      }
+
+      & .percent-icon {
+        font-size: 2rem;
+        width: 2.5rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  &__card-conclusion {
+    margin-top: 10px;
+
+    & .conclusion {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .overview-stats {
+    &__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 30px 0;
+    }
+
+    &__card {
+      padding: 25px 35px;
+    }
+
+    &__card-content {
+      gap: 30px 0;
+    }
+
+    &__card-entity {
+      & .entity {
+        font-size: 1.376rem;
+
+        & .entity-icon {
+          font-size: 1.376rem;
+          width: 2rem;
+        }
+      }
+    }
+
+    &__card-measurement {
+      & .measurement {
+        font-size: 2.188rem;
+
+        & .orders-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+
+    &__card-percent {
+      & .percent {
+        font-size: 2.188rem;
+
+        & .percent-icon {
+          font-size: 1.5rem;
+          width: 2rem;
+          height: 1.5rem;
+        }
+      }
+    }
+  }
+}

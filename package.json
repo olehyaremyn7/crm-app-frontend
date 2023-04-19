@@ -1,0 +1,84 @@
+{
+  "name": "crm-app-frontend",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Front-end for CRM Web Application.",
+  "author": "Oleh Yaremyn <oleh_yaremyn@ukr.net>",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test --code-coverage --watch=false",
+    "test:watch": "ng test",
+    "test:hook": "ng test --watch=false",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "lint:hook": "eslint . --ext .js,.ts",
+    "prettier:cli": "prettier \"**/*.ts\"",
+    "prettier:check": "npm run prettier:cli -l",
+    "prettier:fix": "npm run prettier:cli --write",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@angular/animations": "^14.0.0",
+    "@angular/cdk": "^14.0.5",
+    "@angular/common": "^14.0.0",
+    "@angular/compiler": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/forms": "^14.0.0",
+    "@angular/material": "^14.0.5",
+    "@angular/platform-browser": "^14.0.0",
+    "@angular/platform-browser-dynamic": "^14.0.0",
+    "@angular/router": "^14.0.0",
+    "chart.js": "^3.9.1",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.0.6",
+    "@angular/cli": "~14.0.6",
+    "@angular/compiler-cli": "^14.0.0",
+    "@types/jasmine": "~4.0.0",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "husky": "^8.0.3",
+    "jasmine-core": "~4.1.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "prettier": "^2.8.7",
+    "typescript": "~4.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olehyaremyn7/crm-app-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olehyaremyn7/crm-app-frontend.git/issues"
+  },
+  "homepage": "https://github.com/olehyaremyn7/crm-app-frontend.git/#readme",
+  "keywords": [
+    "MEAN",
+    "MongoDB",
+    "ExpressJS",
+    "NodeJS",
+    "Angular",
+    "Angular Material",
+    "ESLint",
+    "Prettier",
+    "REST API"
+  ]
+}

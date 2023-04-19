@@ -1,0 +1,93 @@
+<section class="auth-form">
+  <mat-card class="auth-form__card">
+    <mat-card-header class="auth-form__card-header">
+      <mat-card-title class="auth-form__card-title">
+        {{ isRegistration ? 'Registration' : 'Login' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="auth-form__card-content">
+      <form class="auth-form__form" [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field
+          class="auth-form__form-control"
+          [class.invalid]="form.get('email')?.touched && form.get('email')?.invalid"
+        >
+          <mat-label for="email">
+            <mat-icon> email </mat-icon>
+            Email
+          </mat-label>
+          <input matInput formControlName="email" type="email" id="email" placeholder="Ex. pat@example.com" />
+
+          <mat-error *ngIf="form.get('email')?.hasError('email')" class="auth-form__validation">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('required')" class="auth-form__validation">
+            Please enter email
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('pattern')" class="auth-form__validation">
+            Invalid email! Please enter an existing one email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          class="auth-form__form-control"
+          [class.invalid]="form.get('password')?.touched && form.get('password')?.invalid"
+        >
+          <mat-label for="password">
+            <mat-icon> vpn_key </mat-icon>
+            Password
+          </mat-label>
+          <input
+            matInput
+            [type]="isPasswordHide ? 'password' : 'text'"
+            formControlName="password"
+            style="border: none"
+            id="password"
+          />
+          <button
+            [disabled]="authService.isLoading"
+            [matTooltip]="isPasswordHide ? 'Show password' : 'Hide password'"
+            mat-icon-button
+            matSuffix
+            [class.active]="!isPasswordHide"
+            [class.disabled]="authService.isLoading"
+            (click)="showHidePasswordToggle($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="isPasswordHide"
+            type="button"
+          >
+            <mat-icon>{{ isPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="form.get('password')?.hasError('minlength')" class="auth-form__validation">
+            Min password length must be
+            {{ form.get('password')?.errors?.minlength?.requiredLength }}
+            symbols. Now it is
+            {{ form.get('password')?.errors?.minlength?.actualLength }}
+            symbols
+          </mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('required')" class="auth-form__validation">
+            Please enter password
+          </mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('pattern')" class="auth-form__validation">
+            Password should contain only QWERTY letters (uppercase and lowercase), numbers, and common punctuation
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          class="auth-form__btn"
+          mat-flat-button
+          color="accent"
+          [class.spinner]="authService.isLoading"
+          [disabled]="form.invalid || form.disabled"
+        >
+          <app-button-loader *ngIf="authService.isLoading; else buttonText"></app-button-loader>
+          <ng-template #buttonText>
+            {{ isRegistration ? 'Sign up' : 'Sign in' }}
+          </ng-template>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

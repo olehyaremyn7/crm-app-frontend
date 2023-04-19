@@ -1,0 +1,75 @@
+<section class="order-cart">
+  <h3 mat-dialog-title class="order-cart__title">
+    <mat-icon class="order-cart__title-icon"> shopping_cart_checkout </mat-icon>
+    Your order
+  </h3>
+  <mat-dialog-content class="order-cart__content">
+    <table mat-table [dataSource]="tableDataSource" class="order-cart__table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let orderPosition">
+          {{ orderPosition.name }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let orderPosition">{{ orderPosition.quantity }}x</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef>Cost</th>
+        <td mat-cell *matCellDef="let orderPosition">
+          {{ orderPosition.cost | currency }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>Total price</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let position">
+          <button
+            class="order-cart__table-operation-button"
+            mat-flat-button
+            color="primary"
+            (click)="deletePosition(position._id)"
+            [disabled]="orderService.isCreateLoading"
+            matTooltip="Delete position"
+          >
+            <mat-icon class="operation-icon">delete</mat-icon>
+          </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef>{{ getTotalCost() | currency }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+      <tr mat-footer-row *matFooterRowDef="tableColumns; sticky: true"></tr>
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions class="order-cart__actions">
+    <button
+      mat-flat-button
+      type="reset"
+      (click)="closeModal()"
+      class="order-cart__action-btn"
+      [disabled]="orderService.isCreateLoading"
+    >
+      Cancel
+    </button>
+
+    <button
+      mat-flat-button
+      color="accent"
+      type="submit"
+      class="order-cart__action-btn"
+      (click)="checkout()"
+      [disabled]="!cart.isOrderPositions || orderService.isCreateLoading"
+    >
+      <app-button-loader *ngIf="orderService.isCreateLoading; else buttonText"></app-button-loader>
+      <ng-template #buttonText> Checkout </ng-template>
+    </button>
+  </mat-dialog-actions>
+</section>
